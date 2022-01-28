@@ -18,10 +18,10 @@ async def on_user_added(event):
         if is_added("group", event.chat_id):
             del_from_db("group", event.chat_id)
         return
-    if not event.user_joined or event.added_by:
+
+    if not (event.user_joined or event.added_by):
         # ignore events other than user joins
         return
-
     if user.id == (await bot.get_me()).id:
         await event.reply(
             "Hey, thanks for adding me here. Learn how to use me by clicking the below button!",
@@ -29,6 +29,9 @@ async def on_user_added(event):
         )
         if not is_added("group", event.chat_id):
             add_to_db("group", event.chat_id)
+        return
+
+    if user.bot:
         return
 
     try:

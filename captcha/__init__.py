@@ -19,6 +19,7 @@ try:
     BOT_TOKEN = config("BOT_TOKEN")
     REDIS_URL = config("REDIS_URL")
     REDIS_PASSWORD = config("REDIS_PASSWORD")
+    AUTH = [int(i) for i in config("AUTH").split(" ")]
 except UndefinedValueError as ex:
     log.exception(ex)
     exit(0)

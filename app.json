@@ -23,6 +23,10 @@
         "REDIS_PASSWORD": {
             "description": "Redis database password, from redislabs.com.",
             "value": ""
+        },
+        "AUTH": {
+            "description": "User ID of users who own the bot, split by space.",
+            "value": "719195224"
         }
     },
     "buildpacks": [
