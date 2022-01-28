@@ -1,0 +1,33 @@
+{
+    "name": "Captcha Bot",
+    "description": "Join captchas bot for telegram, by @BotzHub.",
+    "logo": "",
+    "keywords": [
+        "telegram",
+        "telethon",
+        "telegram-bot",
+        "botzhub"
+    ],
+    "repository": "https://github.com/xditya/filestorepriv",
+    "website": "xditya.me",
+    "success_url": "https://t.me/BotzHub",
+    "env": {
+        "BOT_TOKEN": {
+            "description": "Bot token, get it from @BotFather.",
+            "value": ""
+        },
+        "REDIS_URL": {
+            "description": "Redis database URL, from redislabs.com",
+            "value": ""
+        },
+        "REDIS_PASSWORD": {
+            "description": "Redis database password, from redislabs.com.",
+            "value": ""
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ]
+}
