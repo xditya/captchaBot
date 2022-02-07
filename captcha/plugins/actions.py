@@ -4,16 +4,16 @@
 import re
 
 from requests import get
-from captcha.plugins.db import add_to_db, del_from_db, is_added
+from captcha.plugins.database_fns import add_to_db, del_from_db, is_added
 from . import events, bot, Button
-from . import db as database
+from . import db
 from .. import log
 
 # listen to new joins
 @bot.on(events.ChatAction)
 async def on_user_added(event):
     user = await event.get_user()
-    cache_opts = eval(database.get("CACHE"))
+    cache_opts = eval(db.get("CACHE"))
 
     if (event.user_left or event.user_kicked) and user.id == (await bot.get_me()).id:
         if is_added("group", event.chat_id):
@@ -58,7 +58,7 @@ async def on_user_added(event):
 
     t = f"{event.chat_id}|{user.id}"
     cache_opts.update({t: answer})
-    database.set("CACHE", str(cache_opts))
+    db.set("CACHE", str(cache_opts))
 
     buttons_row = [Button.inline(i, data="a_{}||{}".format(i, t)) for i in options]
     buttons = []
@@ -79,7 +79,7 @@ async def on_user_added(event):
 async def unmuter(event):
     args = event.data_match.group(1).decode("UTF-8")
     clicked, info = args.split("||")
-    cache_opts = eval(database.get("CACHE"))
+    cache_opts = eval(db.get("CACHE"))
     answer = cache_opts.get(info)
     user = int(info.split("|")[1])
 

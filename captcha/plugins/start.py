@@ -2,7 +2,7 @@
 # Powered by apis.xditya.me
 
 from . import bot, events, Button
-from .db import is_added, add_to_db
+from .database_fns import is_added, add_to_db
 
 
 @bot.on(events.NewMessage(incoming=True, pattern=r"^/start ?(.*)"))

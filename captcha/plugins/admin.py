@@ -1,5 +1,5 @@
 from . import events, bot
-from .db import get_all
+from .database_fns import get_all
 from .. import AUTH
 
 
